@@ -1,0 +1,108 @@
+/* Fundo com gradiente */
+#fundo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #a8d5ff, #d1a3ff); /* gradiente azul bebê → lilás */
+  z-index: 0; /* atrás das fotos */
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+
+#baguncar {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 2000;
+  padding: 10px 15px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+#baguncar:hover { background: #2980b9; }
+
+#galeria {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Acima do fundo */
+}
+
+.polaroid {
+  background: white;
+  padding: 10px 10px 20px 10px;
+  width: 120px;
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-200px) rotate(0deg);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.polaroid img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.polaroid:hover {
+  animation: tremer 0.3s infinite alternate;
+  transform: scale(1.1) rotate(0deg);
+  z-index: 100;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4),
+              4px 4px 15px rgba(0,0,0,0.2) inset;
+}
+
+@keyframes tremer {
+  0% { transform: scale(1.1) rotate(-2deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+  100% { transform: scale(1.1) rotate(-2deg); }
+}
+
+@keyframes cair {
+  0% {
+    transform: translateY(-200px) rotate(var(--rotacao-inicial));
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--rotacao-final));
+    opacity: 1;
+  }
+}
+
+#overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+@media(max-width: 600px) { .polaroid { width: 90px; } }
